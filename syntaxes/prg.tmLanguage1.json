@@ -1,0 +1,114 @@
+{
+	"name": "PRG",
+	"scopeName": "source.PRG",
+	"foldingStartMarker" : "<attr>",
+	"foldingStopMarker" : "<program>",
+	"patterns": [
+		{
+			"include": "#keywords"
+		},
+		{
+			"include": "#comments"
+		},
+		{
+			"include": "#entitys"
+		},
+		{
+			"include": "#variables"
+		},
+		{
+			"include": "#strings"
+		},
+		{
+			"include": "#constant"
+		}
+	],
+	"repository": {
+		"keywords": {
+			"patterns": [
+			{
+				"name": "keyword.operator.less.prg",
+				"match": "\\b(AND|OR)\\b"
+			},
+			{
+				"name": "keyword.control.prg",
+				"match": "\\b(IF|ELSE|END IF|SELECT|CASE|GOTO|LBL|WHILE|END WHILE|FOR|END FOR|BREAK|THEN)\\b"
+			},
+			{
+				"name": "keyword.other",
+				"match": ""
+			}
+		]
+		},
+		"comments": {
+			"name": "comment.line.character.prg",
+			"begin": "'",
+			"end": "$",
+			"patterns": [
+				{
+					"name": "constant.character.escape.prg",
+					"match": ""
+				}
+			]
+		},
+		"entitys":{
+			"patterns": [
+			{
+				"name": "entity.other.inherited-class.prg",
+				"match": "\\b(WAIT TIME|WAIT|PULSE|DO|DI|R\\[)\\b"
+			},
+			{
+				"name": "entity.other.attribute-name.prg",
+				"match": ""
+			},
+			{
+				"name": "entity.name.function.prg",
+				"match": "\\b(PRINTF|THROW|CALL|RUN|PAUSE|ABORT|END)\\b"
+			},
+			{
+				"name": "entity.name.type.prg",
+				"match": ""
+			},
+			{
+				"name": "entity.name.tag.prg",
+				"match": "\\b(J|L|JUMP|C|A)\\b"
+			},
+			{
+				"name": "entity.name.section.prg",
+				"match": ""
+			}
+		]
+
+		},
+		"variables":{
+			"patterns": [{
+				"name": "variable.parameter.prg",
+				"match": "\\b(JR|LR|(J_|L_|)(VEL|ACC|DEC|VORD)|P|CNT|LIMZ|ARCH_A|ARCH_B|ON|OFF|WARNING|LEVEL)\\b"
+			},
+			{
+				"name": "variable.language.prg",
+				"match": ""
+			},
+			{
+				"name": "variable.other.prg",
+				"match": ""
+			}
+		]
+
+		},
+		"strings":{
+			"patterns": [{
+				"name": "string.qouted.double.prg",
+				"match": "\".*\""
+			}]
+
+		},
+		"constant":{
+			"patterns": [{
+				"name": "constant.numeric.prg",
+				"match": "(\\d+\\s|-\\d+\\s)"
+			}]
+
+		}
+	}
+}

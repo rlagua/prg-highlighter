@@ -1,0 +1,33 @@
+{
+  "name": "prg-highlighter",
+  "displayName": "PRG",
+  "description": "hsrcode 高亮",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Themes"
+  ],
+  "contributes": {
+    "languages": [{
+      "id": "prg",
+      "aliases": ["PRG", "prg"],
+      "extensions": [".PRG"],
+      "configuration": "./language-configuration.json"
+    }],
+    "grammars": [{
+      "language": "prg",
+      "scopeName": "source.PRG",
+      "path": "./syntaxes/prg.tmLanguage.json"
+    }],
+    "themes": [
+      {
+        "label": "hsr-theme",
+        "uiTheme": "vs-dark",
+        "path": "./themes/hsr-theme-color-theme.json"
+      }
+    ]
+  }
+}

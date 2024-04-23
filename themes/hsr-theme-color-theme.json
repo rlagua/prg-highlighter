@@ -1,0 +1,57 @@
+{
+	"name": "hsr-theme",
+	"colors": {
+		"editor.background": "#263238",
+		"editor.foreground": "#e9eff3",
+		"activityBarBadge.background": "#007acc",
+		"sideBarTitle.foreground": "#bbbbbb"
+	},
+	"tokenColors": [
+		{
+			"name": "condition cmd",
+			"scope": [
+				"cmd.equal.prg",
+			],
+			"settings": {
+				"foreground": "#50c619"
+			}
+		},
+		{
+			"name": "sport cmd",
+			"scope": [
+				"cmd.sport.prg",
+			],
+			"settings": {
+				"fontStyle": "italic",
+				"foreground": "#f38c7f"
+			}
+		},
+		{
+			"name": "socket cmd",
+			"scope": [
+				"cmd.socket.prg",
+			],
+			"settings": {
+				"foreground": "#1b88db"
+			}
+		},
+		{
+			"name": "condition cmd",
+			"scope": [
+				"cmd.condition.prg",
+			],
+			"settings": {
+				"foreground": "#bd55ee"
+			}
+		},
+		{
+			"name": "register cmd",
+			"scope": [
+				"cmd.register.prg",
+			],
+			"settings": {
+				"foreground": "#f33330"
+			}
+		},
+	]
+}

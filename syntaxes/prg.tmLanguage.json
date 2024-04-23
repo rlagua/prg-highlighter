@@ -1,0 +1,68 @@
+{
+	"name": "PRG",
+	"scopeName": "source.PRG",
+	"foldingStartMarker": "<attr>",
+	"foldingStopMarker": "<program>",
+	"patterns": [
+		{
+			"name": "cmd.equal.prg",
+			"match": "(<>|=|>|<|>=|<=)"
+		},
+		{
+			"name": "cmd.sport.prg",
+			"match": "\\b(J|L|C|A|JUMP)\\b"
+		},
+		{
+			"name": "cmd.io.prg",
+			"match": "\\b(DO|VDI|AO|PULSE|SET_TR|WAIT)\\b"
+		},
+		{
+			"name": "cmd.wait.prg",
+			"match": "\\b(WAIT)\\b"
+		},
+		{
+			"name": "cmd.condition.prg",
+			"match": "IF|THEN|ELSE|END IF|SELECT|CASE"
+		},
+		{
+			"name": "cmd.process.prg",
+			"match": "\\b(CALL|GOTO|LBL)\\b"
+		},
+		{
+			"name": "cmd.circle.prg",
+			"match": "\\b(FOR|WHILE|END FOR|END WHILE|BREAK)\\b"
+		},
+		{
+			"name": "cmd.programcontrol.prg",
+			"match": "\\b(RUN|PAUSE|ABORT|END|LOAD|START)\\b"
+		},
+		{
+			"name": "cmd.coord.prg",
+			"match": "\\b(WORLDFRAME|UTOOL_NUM|UFRAME_NUM|SET_TOOL|EX_UTOOL)\\b"
+		},
+		{
+			"name": "cmd.sport_para.prg",
+			"match": "\\b(J_DEC)\\b"
+		},
+		{
+			"name": "cmd.socket.prg",
+			"match": "\\b(OPENSOCKET|CLOSESOCKET|ISHANDLEOPEN|CONNECT|ACCEPT|SEND|RECEIVE|SOCKETMONITOR)\\b"
+		},
+		{
+			"name": "operator.prg",
+			"match": "\\b(AND|OR|DIV|MOD)\\b"
+		},
+		{
+			"name": "operator.prg",
+			"match": "\\b(AND|OR|DIV|MOD)\\b"
+		},
+		{
+			"name": "constant.character.escape.prg",
+			"match": ""
+		},
+		{
+			"name": "cmd.register.prg",
+			"match": "\\bR\\[.*\\]|\\bJR\\[.*\\]"
+		}
+	]
+}
