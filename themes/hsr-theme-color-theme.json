@@ -40,6 +40,8 @@
 			"name": "socket cmd",
 			"scope": [
 				"cmd.socket.prg",
+				"cmd.modbus.prg",
+				"cmd.string.prg",
 			],
 			"settings": {
 				"foreground": "#1b88db"

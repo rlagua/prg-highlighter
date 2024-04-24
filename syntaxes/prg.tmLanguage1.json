@@ -32,7 +32,7 @@
 			},
 			{
 				"name": "keyword.control.prg",
-				"match": "\\b(IF|ELSE|END IF|SELECT|CASE|GOTO|LBL|WHILE|END WHILE|FOR|END FOR|BREAK|THEN)\\b"
+				"match": "\\b(IF|ELSE|END IF|SELECT|CASE|GOTO|LBL|WHILE|END WHILE|FOR|TO|END FOR|BREAK|THEN)\\b"
 			},
 			{
 				"name": "keyword.other",

@@ -1,8 +1,8 @@
 {
   "name": "prg-highlighter",
   "displayName": "PRG",
-  "description": "hsrcode 高亮",
-  "version": "0.0.1",
+  "description": "HUASHU robot 编程语言vscode插件，支持高亮及补全",
+  "version": "0.0.2",
   "engines": {
     "vscode": "^1.75.0"
   },

@@ -29,7 +29,7 @@
 		},
 		{
 			"name": "cmd.wait.prg",
-			"match": "\\b(WAIT)\\b"
+			"match": "\\b(WAIT TIME)\\b"
 		},
 		{
 			"name": "cmd.condition.prg",
@@ -41,7 +41,7 @@
 		},
 		{
 			"name": "cmd.circle.prg",
-			"match": "\\b(FOR|WHILE|END FOR|END WHILE|BREAK)\\b"
+			"match": "\\b(FOR|TO|WHILE|END FOR|END WHILE|BREAK)\\b"
 		},
 		{
 			"name": "cmd.programcontrol.prg",
@@ -53,15 +53,19 @@
 		},
 		{
 			"name": "cmd.sport_para.prg",
-			"match": "\\b(J_DEC)\\b"
+			"match": "\\b(J_VEL|J_ACC|J_DEC|L_VEL|L_ACC|L_DEC|L_VROT|C_VEL|C_ACC|C_DEC|C_VROT)\\b"
 		},
 		{
 			"name": "cmd.socket.prg",
-			"match": "\\b(OPENSOCKET|OPTIONS|HANDLE|CLOSESOCKET|ISHANDLEOPEN|CONNECT|ACCEPT|SEND|RECEIVE|SOCKETMONITOR)\\b"
+			"match": "\\b(OPENSOCKET|OPTIONS|HANDLE|CLOSESOCKET|ISHANDLEOPEN|CONNECT|ACCEPT|SEND|RECEIVE|SOCKETMONITOR|BRECBUFEMPTY)\\b"
 		},
 		{
 			"name": "cmd.modbus.prg",
 			"match": "\\b(CLOSE_MODBUS_RTU|OPEN_MODBUS_RTU|OPEN_MODBUS_TCP|CLOSE_MODBUS_TCP|READ_MDB_COILSTATUS|READ_MDB_INPUTSTATUS|READ_MDB_INPUTREG|READ_MDB_HOLDREG|WRITE_MDB_COILSTATUS|WRITE_MDB_HOLDREG)\\b"
+		},
+		{
+			"name": "cmd.string.prg",
+			"match": "\\b(TOSTR|TOVAL|STRLEN|FINDSTR|SUBSTR)\\b"
 		},
 		{
 			"name": "operator.prg",
@@ -77,7 +81,7 @@
 		},
 		{
 			"name": "cmd.register.prg",
-			"match": "\\b(R|JR|LR)"
+			"match": "\\b(R|JR|LR|P|SR)\\b"
 		},
 		{
 			"name": "character.prg",

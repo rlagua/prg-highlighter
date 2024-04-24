@@ -14,77 +14,77 @@
 			"$2",
 			"<end>"
 		],
-		"description": "Log output to console"
+		"description": "初始化模板"
 	},
 	"J": {
 		"prefix": "J",
 		"body": [
 			"J ${1|P,JR,LR|}[$2]"
 		],
-		"description": "description..."
+		"description": "关节运动 J 指令以机械臂（或者外部轴）的当前实际位置为起点，移动机械臂（或者外部轴）到达目标点位置。移动过程不进行轨迹以及姿态控制，即所有关节同时启停"
 	},
 	"L": {
 		"prefix": "L",
 		"body": [
 			"L ${1|P,JR,LR|}[$2]"
 		],
-		"description": "description..."
+		"description": "直线运动 L 指令以机械臂当前位置为起点，直线运动到目标点，用于对轨迹控制有要求的场合"
 	},
 	"C": {
 		"prefix": "C",
 		"body": [
 			"C ${1|P,JR,LR|}[$2] ${3|P,JR,LR|}[$4]"
 		],
-		"description": "description..."
+		"description": "圆弧运动 C 指令以当前位置为起点，MIDDLEPOINT 为中间点，TARGETPOINT为终点，控制机器人在笛卡尔空间进行圆弧轨迹运动（三点成一个圆弧）。圆弧指令不能画出整圆，如果要画整圆的话，需要使用两条圆弧 C 指令"
 	},
 	"A": {
 		"prefix": "A",
 		"body": [
 			"A ${1|P,JR,LR|}[$2]"
 		],
-		"description": "description..."
+		"description": "多段圆弧 A 指令可用于实现多段不同半径的圆弧，用于拼接多段不规则的曲线。程序行中连续的三条 A 指令指定的位置可组成一段圆弧。当使用四条连续的 A 指令时，可实现前三个点为半径 X 的圆弧，后三个点位半径 Y 的圆弧。两段圆弧之间可进行点位添加和删除，并且可以设置不同的运动附加属性，两段圆弧运动之间没有停顿"
 	},
 	"DO": {
 		"prefix": "DO",
 		"body": [
 			"DO[${1:R[]}] = ${2|ON,OFF|}"
 		],
-		"description": "description..."
+		"description": "DO[x]：数字量输出 IO，bool 类型，系统定义了 512 个，即 DO[0]~DO[511]"
 	},
 	"VDI": {
 		"prefix": "VDI",
 		"body": [
 			"VDI[${1| ,R[]|}] = ${2|ON,OFF|}"
 		],
-		"description": "description..."
+		"description": "VDI 是虚拟 IO 输入，当系统的 IO 切换到虚拟状态后，VDI 的值就代表该 IO 的状态。 执行 VDI[X]=ON|OFF，将对应的虚拟 DI 信号置 ON 或 OFF"
 	},
 	"AO": {
 		"prefix": "AO",
 		"body": [
 			"AO[${1| ,R[]|}] = ${2: }"
 		],
-		"description": "description..."
+		"description": "AO[x]：模拟量输出 IO，float 类型，系统定义了 16 个，即 AO[0]~AO[15]"
 	},
-	"PLUSE": {
-		"prefix": "PLUSE",
+	"PULSE": {
+		"prefix": "PULSE",
 		"body": [
-			"PLUSE DO[$1] TIME=$2"
+			"PULSE DO[$1] TIME=$2"
 		],
-		"description": "description..."
+		"description": "PULSE 指令用于控制某个 DO[x]输出指定时长的脉冲信号。PULSE 指令执行后，程序指针即开始往下执行，不会阻塞等待脉冲输出完成。TIME 的参数单位是毫秒"
 	},
 	"SET_TR": {
 		"prefix": "SET_TR",
 		"body": [
 			"SET_TR not completed"
 		],
-		"description": "description..."
+		"description": " 起点：正常情况下为上一运动指令的目标点。当运动终止时，重新启动运动后需以机器人当前位置为起始点重新进行计算。 DS：DISTANCE START 的缩写，指距离机器人运动起点的距离。 DE：DISTANCE END 的缩写，指距离运动目标点的距离"
 	},
 	"WAIT TIME": {
 		"prefix": "WAIT TIME",
 		"body": [
 			"WAIT TIME = $1"
 		],
-		"description": "description..."
+		"description": "WAIT TIME 指令的作用是延时程序（任务）的执行，单位是毫秒，在后台 RUN 程序或者死循环的 WHILE 语句块中，应该使用 WAIT TIME 指令进行延时，否则可能出现 CPU 占用率过高的问题"
 	},
 	"IFTHEN": {
 		"scope": "prg",
@@ -94,7 +94,7 @@
 			"$2",
 			"END IF"
 		],
-		"description": "Log output to console"
+		"description": "IF THEN 需要配合 END IF 指令使用，IF... GOTO，IF ... CALL 指令不需要配合END IF 使用。IF THEN 可与 ELSE 指令配合使用，当条件不满足时执行 ELSE 分支"
 	},
 	"IF GOTO": {
 		"scope": "prg",
@@ -102,7 +102,7 @@
 		"body": [
 			"IF $1,GOTO LBL[$2]"
 		],
-		"description": "Log output to console"
+		"description": "如果条件成立，则跳转到对应的 LBL 标签处执行；如果条件不成立，则顺序执行IF 后面的程序块"
 	},
 	"IF CALL": {
 		"scope": "prg",
@@ -110,7 +110,7 @@
 		"body": [
 			"IF $1,CALL \"$2\""
 		],
-		"description": "Log output to console"
+		"description": "如果条件成立，则调用执行完子程序的代码内容后再顺序往下执行；如果条件不成立，则执行 IF 指令的下一行指令内容，忽略子程序调用"
 	},
 	"SELECT": {
 		"scope": "prg",
@@ -118,7 +118,7 @@
 		"body": [
 			"SELECT R[$1]"
 		],
-		"description": "Log output to console"
+		"description": "SELECT 语句将 SELECT 选择的寄存器存储数值与 CASE 后的值进行比较，如果相等，则执行该行 CASE 后流程指令，同时跳出 SELECT 语句块，后面的 CASE 指令和ELSE 指令不再执行；如不相等，则不执行该行对应 CASE，并继续进行后续的 CASE选项判断，直到完成整个语句块"
 	},
 	"CASE": {
 		"scope": "prg",
@@ -126,7 +126,7 @@
 		"body": [
 			"CASE $1,GOTO LBL [$2]"
 		],
-		"description": "Log output to console"
+		"description": "CASE"
 	},
 	"ELSECOTO": {
 		"scope": "prg",
@@ -134,7 +134,7 @@
 		"body": [
 			"ELSE,GOTO LBL[$1]"
 		],
-		"description": "Log output to console"
+		"description": "ELSE GOTO"
 	},
 	"CALL": {
 		"scope": "prg",
@@ -142,7 +142,7 @@
 		"body": [
 			"CALL \"$1\""
 		],
-		"description": "Log output to console"
+		"description": "CALL 指令用于子程序调用，执行子程序的程序内容。程序调用支持多层嵌套，最高可支持 12 层"
 	},
 	"GOTO": {
 		"scope": "prg",
@@ -158,23 +158,27 @@
 		"body": [
 			"LBL[$1]"
 		],
-		"description": "Log output to console"
+		"description": "LBL[]标签语句用于设定标签位置，GOTO 语句用于跳转程序到指定标签位置处。如果要使用 GOTO 关键字，则必须在程序中先定义标签 LBL，且 GOTO 与 LBL 必须在同一程序块中"
 	},
 	"FOR": {
 		"scope": "prg",
 		"prefix": "FOR",
 		"body": [
-			"FOR R[$1] = $2 TO $3"
+			"FOR R[$1] = $2 TO $3",
+			"$4",
+			"END FOR"
 		],
-		"description": "Log output to console"
+		"description": "FOR 语句需要定义一个变量的初始值、最终值，以及步进值（BY 表达式可选，不写则默认每次递增 1）。系统会判断循环变量值是否小于等于最终值，小于等于则执行循环，否则退出循环。FOR 和 END FOR 构成一个循环语句块"
 	},
 	"FOR-BY": {
 		"scope": "prg",
 		"prefix": "FOR",
 		"body": [
-			"FOR R[$1] = $2 TO $3 BY $4"
+			"FOR R[$1] = $2 TO $3 BY $4",
+			"$5",
+			"END FOR"
 		],
-		"description": "Log output to console"
+		"description": "FOR 语句需要定义一个变量的初始值、最终值，以及步进值（BY 表达式可选，不写则默认每次递增 1）。系统会判断循环变量值是否小于等于最终值，小于等于则执行循环，否则退出循环。FOR 和 END FOR 构成一个循环语句块"
 	},
 	"END FOR": {
 		"scope": "prg",
@@ -190,7 +194,7 @@
 		"body": [
 			"WHILE"
 		],
-		"description": "Log output to console"
+		"description": "END FOR"
 	},
 	"END WHILE": {
 		"scope": "prg",
@@ -198,7 +202,7 @@
 		"body": [
 			"END WHILE"
 		],
-		"description": "Log output to console"
+		"description": "END WHILE"
 	},
 	"BREAK": {
 		"scope": "prg",
@@ -206,49 +210,49 @@
 		"body": [
 			"BREAK"
 		],
-		"description": "Log output to console"
+		"description": "BREAK 语句用于跳出 FOR 或者 WHILE 循环"
 	},
 	"RUN": {
 		"prefix": "RUN",
 		"body": [
 			"RUN \"$1\""
 		],
-		"description": "description..."
+		"description": "RUN 指令用于开启后台程序运行。用户使用多任务功能时，可以在示教器上配置后台程序上电自动运行，或者在前台运动程序中使用 RUN 指令开启后台程序，后台逻辑程序组掩码为*"
 	},
 	"PAUSE": {
 		"prefix": "PAUSE",
 		"body": [
 			"PAUSE"
 		],
-		"description": "description..."
+		"description": "PAUSE 指令用于暂停程序本身，或者暂停指定程序名的程序执行，可用在主程序或者 RUN 程序中"
 	},
 	"WORLDFRAME": {
 		"prefix": "WORLDFRAME",
 		"body": [
 			"WORLDFRAME = $1"
 		],
-		"description": "description..."
+		"description": "该指令用于使世界坐标系生效或者失效。世界坐标系在没有标定的情况下，是和基坐标重合的，即都位于机械臂的底座位置"
 	},
 	"UTOOL_NUM": {
 		"prefix": "UTOOL_NUM",
 		"body": [
 			"UTOOL_NUM = $1"
 		],
-		"description": "description..."
+		"description": "该指令用于程序中调用须使用的 TCP 工具坐标系"
 	},
 	"UTOOL_FRAME": {
 		"prefix": "UTOOL_FRAME",
 		"body": [
 			"UTOOL_FRAME = $1"
 		],
-		"description": "description..."
+		"description": "该指令用于程序中调用须使用的工件坐标系"
 	},
 	"SET_TOOL": {
 		"prefix": "SET_TOOL",
 		"body": [
 			"SET_TOOL $1 LR[$2]"
 		],
-		"description": "description..."
+		"description": "SET_TOOL 指令用于修改工具坐标系的值"
 	},
 	"EX_UTOOL": {
 		"prefix": "EX_UTOOL",
@@ -261,61 +265,250 @@
 		"scope": "prg",
 		"prefix": "OPENSOCKET",
 		"body": [
-			"OPENSOCKET OPTIONS = $1 HANDLE = $2"
+			"${1:R[] = }OPENSOCKET OPTIONS = $2 HANDLE = $3"
 		],
-		"description": "Log output to console"
+		"description": "创建套接字。语法格式如下：\nINT OPENSOCKET OPTIONS=<int num> HANDLE=<int device number>\nOPTIONS：0 表示数据被缓冲，直到缓冲区满或超时才能使用，该模式将用于提高网络利用率；1 表示不做延迟，马上发送数据。\nHANDLE：即设备句柄，值范围是 1~255。\n函数返回值， 0：创建成功， -1：创建失败。"
 	},
 	"CLOSESOCKET": {
 		"scope": "prg",
 		"prefix": "CLOSESOCKET",
 		"body": [
-			"CLOSESOCKET HANDLE = $1"
+			"${1:R[] = }CLOSESOCKET HANDLE = $2"
 		],
-		"description": "Log output to console"
+		"description": "关闭套接字。语法格式如下：\nINT CLOSESOCKET HANDLE=<device number>\n 函数返回值， 0：关闭成功， -1：关闭失败"
 	},
 	"ISHANDLEOPEN": {
 		"scope": "prg",
 		"prefix": "ISHANDLEOPEN",
 		"body": [
-			"ISHANDLEOPEN(${1:1})"
+			"${1:R[] = }ISHANDLEOPEN($2)"
 		],
-		"description": "Log output to console"
+		"description": "ISHANDLEOPEN 指令用于判断套接字是否打开并且通讯连接成功，返回 true 表示该套接字已经打开并且通讯连接成功，返回 False 表示该套接字未打开，或者通讯未连接。布尔型变量转浮点型时，1.0 表示 true，0 表示 false"
 	},
 	"CONNECT": {
 		"scope": "prg",
 		"prefix": "CONNECT",
 		"body": [
-			"CONNECT(${1:1},${2:\"0.0.0.0\"},${3:30000})"
+			"${1:R[] = }CONNECT(${2:Handle},\"${3:0.0.0.0}\",${4:Port})"
 		],
-		"description": "Log output to console"
+		"description": "连接服务器，用于机械臂作为客户端的情形"
 	},
 	"ACCEPT": {
 		"scope": "prg",
 		"prefix": "ACCEPT",
 		"body": [
-			"ACCEPT(${1:1},${2:\"0.0.0.0\"},${3:30000},R[${4:0}])"
+			"${1:R[] = }ACCEPT(${2:Handle},\"${3:0.0.0.0}\",${4:Port},R[${5:fd}]${6:,TimeOut})"
 		],
-		"description": "Log output to console"
+		"description": "ACCEPT 指令用于机械臂做服务端的情形，服务端打开一个套接字（本例中是handle=1），然后阻塞等待客户端连接（accept），当客户端连接上后，服务端创建一个新的 socket 套接字，并返回保存在 fd 中，服务端用这个新套接字和已经连接的客户端进行数据交互，并再次阻塞监听等待下一个客户端连接。可以分别给对应的 fd 发送信息，实现在一对多的通讯"
 	},
 	"SEND": {
 		"scope": "prg",
 		"prefix": "SEND",
 		"body": [
-			"SEND(${1:1},SR[$2])"
+			"${1:R[] = }SEND(${2:Handle},SR[$3])"
 		],
-		"description": "Log output to console"
+		"description": "SEND指令用于发送数据，不管是服务端还是客户端都通过此函数发送数据。由于用户缓存区最大为512个字节，因此单次发送的最多为512个字节数据，超过则会被自动截断"
 	},
 	"RECEIVE": {
-	"prefix": "RECEIVE",
-	"body": [
-		"${1:R[] = }RECEIVE($2,SR[$3])"
-	],
-	"description": "description..."
+		"prefix": "RECEIVE",
+		"body": [
+			"${1:R[] = }RECEIVE($2,SR[$3])"
+		],
+		"description": "RECEIVE函数用于接收数据，如果接收数据不成功，比如句柄未创建，则函数返回-1。超时未接收到数据则返回0。不管是服务端还是客户端都通过此函数接收数据。由于用户缓存区最大为512个字节，因此单次接收最多为512个字节数据，如果上位机发送数据超过512个，须多次接收。用户在工程实践中可以自定义格式帧，以保证通讯的可靠性"
 	},
 	"SOCKETMONITOR": {
-	"prefix": "SOCKETMONITOR",
+		"prefix": "SOCKETMONITOR",
+		"body": [
+			"${1:R[] = }SOCKETMONITOR($2, $3)"
+		],
+		"description": "SOCKETMONITOR用于设置异步监测通讯连接状态，用户可设置连接断开后是否报警。系统监测从【已连接】到【断开】的情形。当连接断开时，系统自动抛出报警|警告"
+	},
+	"BRECBUFEMPTY": {
+		"prefix": "BRECBUFEMPTY",
+		"body": [
+			"${1:R[] = }BRECBUFEMPTY(${2:Handle})"
+		],
+		"description": "BRECBUFEMPTY指令用于判断接收缓冲区是否有数据"
+	},
+	"OPENTCP": {
+		"prefix": "OPENTCP",
+		"body": [
+			"${1:R[] = }OPEN_MODBUS_TCP(${2:SlaveId},\"${3:0.0.0.0}\",${4:Port},${5:HighLowType})"
+		],
+		"description": "创建MODBUS主站，机械臂作为主站（客户端）和从站通讯。一对多时须分别调用输入对应的IP地址和端口号进行通讯，端口号不能相同"
+	},
+	"CLOSETCP": {
+		"prefix": "CLOSETCP",
+		"body": [
+			"${1:R[] = }CLOSE_MODBUS_TCP(${2:SlaveId})"
+		],
+		"description": "机械臂作为主站（客户端）关闭和该ID的从站连接。函数返回值，0表示成功，-1 表示失败"
+	},
+	"OPENRTU": {
+		"prefix": "OPENRTU",
+		"body": [
+			"${1:R[] = }OPEN_MODBUS_RTU(${2:SlaveId},${3:Port},${4:Baud},${5:DataBit},${6:StopBit},${7:Parity},${8:HighLowType})"
+		],
+		"description": "机械臂作为主站和多个从站通讯时，机械臂作为主站（客户端）和从站通讯。一对多时须分别调用对应的串口号和从站ID"
+	},
+	"CLOSERTU": {
+		"prefix": "CLOSERTU",
+		"body": [
+			"${1:R[] = }CLOSE_MODBUS_RTU(${2:SlaveId})"
+		],
+		"description": "机械臂作为主站，关闭和从站的MODBUSRTU通讯"
+	},
+	"READ COIL STATUS": {
+		"prefix": "READ_COILSTATUS",
+		"body": [
+			"${1:R[] = }READ_MDB_COILSTATUS(${2:SlaveId},${3:StartIndex},${4:Num},${5|DO,R|}[])"
+		],
+		"description": "机械臂作为主站读取从站的线圈数据"
+	},
+	"WRITE COIL STATUS": {
+		"prefix": "WRITE_COILSTATUS",
+		"body": [
+			"${1:R[] = }WRITE_MDB_COILSTATUS(${2:SlaveId},${3:StartIndex},${4:Num},${5|DO,R|}[$6])"
+		],
+		"description": "机械臂作为主站写入从站线圈数据"
+	},
+	"READ INPUT STATUS": {
+		"prefix": "READ_INPUTSTATUS",
+		"body": [
+			"${1:R[] = }READ_MDB_INPUTSTATUS(${2:SlaveId},${3:StartIndex},${4:Num},${5|DO,R|}[])"
+		],
+		"description": "机械臂作为主站读取从站离散线圈数据输入"
+	},
+	"READ INPUT REGISTER": {
+		"prefix": "READ_INPUTREG",
+		"body": [
+			"${1:R[] = }READ_MDB_INPUTREG(${2:SlaveId},${3:StartIndex},${4:Num},R[${5}],${6:DataType})"
+		],
+		"description": "机械臂作为主站读取从站输入寄存器的数据"
+	},
+	"READ HOLD REGISTER": {
+		"prefix": "READ_HOLDREG",
+		"body": [
+			"${1:R[] = }READ_MDB_HOLDREG(${2:SlaveId},${3:StartIndex},${4:Num},R[${5}],${6:DataType})"
+		],
+		"description": "机械臂作为主站读取从站保存寄存器数据"
+	},
+	"WRITE HOLDREG": {
+		"prefix": "WRITE_HOLDREG",
+		"body": [
+			"${1:R[] = }WRITE_MDB_HOLDREG(${2:SlaveId},${3:StartIndex},${4:Num},R[$5],${6:DataType})"
+		],
+		"description": "机械臂作为主站写入从站保存寄存器数据"
+	},
+	"TOSTR": {
+		"prefix": "TOSTR",
+		"body": [
+			"SR[$1] = TOSTR(R[$2])"
+		],
+		"description": "TOSTR指令可实现将数值转换为字符串"
+	},
+	"TOVAL": {
+		"prefix": "TOVAL",
+		"body": [
+			"R[$1] = TOVAL(SR[$2])"
+		],
+		"description": "TOVAL指令可实现将字符串转换为数值"
+	},
+	"STRLEN": {
+		"prefix": "STRLEN",
+		"body": [
+			"R[$1] = STRLEN(SR[$2])"
+		],
+		"description": "使用STRLEN指令可获取字符串的长度"
+	},
+	"FINDSTR": {
+		"prefix": "FINDSTR",
+		"body": [
+			"R[$1] = FINDSTR(SR[$2],SR[$3])"
+		],
+		"description": "FINDSTR指令可实现字符串查找功能。从字符串中从左到右检索要查找的目标字符串，如果找到则返回第一次出现的位置，如果没有找到要查找的字符串则返回0"
+	},
+	"SUBSTR": {
+		"prefix": "SUBSTR",
+		"body": [
+			"SR[$1] = SUBSTR(SR[$2],R[$3],R[$4])"
+		],
+		"description": "SUBSTR指令可实现字符串的截取功能。\n语法格式：\n<stringvar>=SUBSTR(<objstring>,<startindex>,[charlength])\nObjstring：对象字符串为要截取的字符串，该项为必须项。\nstartindex：截取开始位置，指定了要从截取的字符串的哪个位置开始截取，当其值"
+	},
+	"SLAVE": {
+		"prefix": "SLAVE",
+		"body": [
+			"SLAVE MODE=${1|0,1|} CYCLE=${2:CicleNum} LR=$3 MASK=${4|253,254,255,256,R[]|}"
+		],
+		"description": "随动补偿功能是机械臂根据所设定的补偿值，在运动过程中实时调整位姿的功能，随动补偿功能在原理上是主运动+随动运动合成的方式，运动指令的速度值约定的是主运动的速度值，并不是最终合成运动的速度值"
+	},
+	"WEAVE": {
+		"prefix": "WEAVE",
+		"body": [
+			"WEAVE NUM=${1|0,1,2,3,4,5,6,7,8,9|} TYPE=0 PLANE=${2|1,2,3|} AMP=$3 FRE=$4"
+		],
+		"description": "摆动运动是机械臂TCP末端执行正旋摆动轨迹的操作。使用摆动功能时，机械臂会建立起摆动坐标系，并在指定的摆动平面内进行摆动运动"
+	},
+	"WEAVE START": {
+		"prefix": "WEAVE START",
+		"body": [
+			"WEAVE START NUM = $1"
+		],
+		"description": "WEAVE START"
+	},
+	"WEAVE END": {
+		"prefix": "WEAVE END",
+		"body": [
+			"WEAVE END"
+		],
+		"description": "WEAVE END..."
+	},
+	"DELAY": {
+		"prefix": "DELAY",
+		"body": [
+			"DELAY"
+		],
+		"description": "DELAY 指令相当于一个空运动的占位符，执行指针会阻塞在该DELAY 指令行"
+	},
+	"THROW": {
+		"prefix": "THROW",
+		"body": [
+			"THROW \"${1:Message}\" LEVEL=${2|INFO,NOTE,WARNING,ERROR,FATAL|}"
+		],
+		"description": "THROW指令用于抛出用户自定义报警信息，当抛出相应的报警级别信号后，系统会根据报警级别做出对应的操作"
+	},
+	"PRINTF": {
+		"prefix": "PRINTF",
+		"body": [
+			"PRINTF \"${1:Message}\"R[$2]"
+		],
+		"description": "该指令可直接在示教器信息显示栏打印显示信息。多条打印信息时，使用分号隔开"
+	},
+	"SAVE FILE": {
+		"prefix": "SAVE FILE",
+		"body": [
+			"SAVE FILE = \"${1|UT,UF,R,SR,LR,JR|}\""
+		],
+		"description": "SAVE 指令可用于保存变量列表中对应的寄存器变量"
+	},
+	"TRACE NUM": {
+		"prefix": "TRACE NUM",
+		"body": [
+			"TRACE NUM = ${1|0,1,2,3,4|}, SKIP LBL[$2]"
+		],
+		"description": "trace"
+	},
+	"GET TP": {
+		"prefix": "GET TP",
+		"body": [
+			"GET TP"
+		],
+		"description": "GET TP..."
+	},
+	"TPABS": {
+	"prefix": "TPABS",
 	"body": [
-		"SOCKETMONITOR($1, $2)"
+		"TPABS = ${1|0,1|}"
 	],
 	"description": "description..."
 	},
