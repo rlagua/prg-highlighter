@@ -30,6 +30,8 @@
 			"name": "sport cmd",
 			"scope": [
 				"cmd.sport.prg",
+				"cmd.level.prg",
+				"cmd.state.prg",
 			],
 			"settings": {
 				"fontStyle": "italic",
@@ -42,18 +44,38 @@
 				"cmd.socket.prg",
 				"cmd.modbus.prg",
 				"cmd.string.prg",
+				"cmd.other.prg",
+				"cmd.io.prg",
+				"cmd.programcontrol.prg",
+				"cmd.coord.prg",
 			],
 			"settings": {
 				"foreground": "#1b88db"
 			}
 		},
 		{
-			"name": "modbus cmd",
+			"name": "other cmd",
 			"scope": [
-				"cmd.modbus.prg",
 			],
 			"settings": {
-				"foreground": "#37b3d9"
+				"foreground": "#22ca76"
+			}
+		},
+		{
+			"name": "sports para cmd",
+			"scope": [
+				"cmd.sport_para.prg",
+			],
+			"settings": {
+				"foreground": "#ca23b4"
+			}
+		},
+		{
+			"name": "modbus cmd",
+			"scope": [
+			],
+			"settings": {
+				"foreground": "#9ddf24"
 			}
 		},
 		{

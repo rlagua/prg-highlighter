@@ -512,4 +512,81 @@
 	],
 	"description": "description..."
 	},
+	"J_VEL": {
+	"prefix": "J_VEL",
+	"body": [
+		"J_VEL=$1"	
+	],
+	"description": "description..."
+	},
+	"J_ACC": {
+	"prefix": "J_ACC",
+	"body": [
+		"J_ACC=$1"	
+	],
+	"description": "description..."
+	},
+	"J_DEC": {
+	"prefix": "J_DEC",
+	"body": [
+		"J_DEC=$1"	
+	],
+	"description": "description..."
+	},
+	"L_VEL": {
+	"prefix": "L_VEL",
+	"body": [
+		"L_VEL=$1"	
+	],
+	"description": "description..."
+	},
+	"L_ACC": {
+	"prefix": "L_ACC",
+	"body": [
+		"L_ACC=$1"	
+	],
+	"description": "description..."
+	},
+	"L_DEC": {
+	"prefix": "L_DEC",
+	"body": [
+		"L_DEC=$1"	
+	],
+	"description": "description..."
+	},
+	"L_VROT": {
+	"prefix": "L_VROT",
+	"body": [
+		"L_VROT=$1"	
+	],
+	"description": "description..."
+	},
+	"C_VEL": {
+	"prefix": "C_VEL",
+	"body": [
+		"C_VEL=$1"	
+	],
+	"description": "description..."
+	},
+	"C_ACC": {
+	"prefix": "C_ACC",
+	"body": [
+		"C_ACC=$1"	
+	],
+	"description": "description..."
+	},
+	"C_DEC": {
+	"prefix": "C_DEC",
+	"body": [
+		"C_DEC=$1"	
+	],
+	"description": "description..."
+	},
+	"C_VROT": {
+	"prefix": "C_VROT",
+	"body": [
+		"C_VROT=$1"	
+	],
+	"description": "description..."
+	}
 }

@@ -3,17 +3,17 @@
 	"scopeName": "source.PRG",
 	"foldingStartMarker": "<attr>",
 	"foldingStopMarker": "<program>",
-		"comments": {
-			"name": "comment.line.character.prg",
-			"begin": "'",
-			"end": "$",
-			"patterns": [
-				{
-					"name": "constant.character.escape.prg",
-					"match": ""
-				}
-			]
-		},
+	"comments": {
+		"name": "comment.line.character.prg",
+		"begin": "'",
+		"end": "$",
+		"patterns": [
+			{
+				"name": "constant.character.escape.prg",
+				"match": ""
+			}
+		]
+	},
 	"patterns": [
 		{
 			"name": "cmd.equal.prg",
@@ -25,11 +25,7 @@
 		},
 		{
 			"name": "cmd.io.prg",
-			"match": "\\b(DO|VDI|AO|PULSE|SET_TR|WAIT)\\b"
-		},
-		{
-			"name": "cmd.wait.prg",
-			"match": "\\b(WAIT TIME)\\b"
+			"match": "\\b(DO|VDI|AO|PULSE|SET_TR|WAIT|TIME)\\b"
 		},
 		{
 			"name": "cmd.condition.prg",
@@ -64,12 +60,24 @@
 			"match": "\\b(CLOSE_MODBUS_RTU|OPEN_MODBUS_RTU|OPEN_MODBUS_TCP|CLOSE_MODBUS_TCP|READ_MDB_COILSTATUS|READ_MDB_INPUTSTATUS|READ_MDB_INPUTREG|READ_MDB_HOLDREG|WRITE_MDB_COILSTATUS|WRITE_MDB_HOLDREG)\\b"
 		},
 		{
+			"name": "cmd.other.prg",
+			"match": "\\b(PRINTF|THROW|LEVEL|SAVE FILE|DELAY|WEAVE|NUM|TYPE|PLANE|AMP|FRE|SLAVE|MODE|CYCLE|MASK)\\b"
+		},
+		{
+			"name": "cmd.level.prg",
+			"match": "\\b(INFO|NOTE|WARNING|ERROR|FATAL)\\b"
+		},
+		{
 			"name": "cmd.string.prg",
 			"match": "\\b(TOSTR|TOVAL|STRLEN|FINDSTR|SUBSTR)\\b"
 		},
 		{
 			"name": "operator.prg",
 			"match": "\\b(AND|OR|DIV|MOD)\\b"
+		},
+		{
+			"name": "cmd.state.prg",
+			"match": "(\\bON|\\bOFF|\\w+.PRG|\".*\")"
 		},
 		{
 			"name": "operator.prg",
