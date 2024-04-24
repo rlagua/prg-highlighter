@@ -8,6 +8,16 @@
 	},
 	"tokenColors": [
 		{
+			"name": "comment cmd",
+			"scope": [
+				"character.prg",
+			],
+			"settings": {
+				"fontStyle": "italic",
+				"foreground": "#9ba4af"
+			}
+		},
+		{
 			"name": "condition cmd",
 			"scope": [
 				"cmd.equal.prg",
@@ -36,12 +46,23 @@
 			}
 		},
 		{
+			"name": "modbus cmd",
+			"scope": [
+				"cmd.modbus.prg",
+			],
+			"settings": {
+				"foreground": "#37b3d9"
+			}
+		},
+		{
 			"name": "condition cmd",
 			"scope": [
 				"cmd.condition.prg",
+				"cmd.circle.prg",
+				"cmd.process.prg",
 			],
 			"settings": {
-				"foreground": "#bd55ee"
+				"foreground": "#c368ee"
 			}
 		},
 		{
@@ -50,7 +71,17 @@
 				"cmd.register.prg",
 			],
 			"settings": {
-				"foreground": "#f33330"
+				"fontStyle": "italic",
+				"foreground": "#17d4a2"
+			}
+		},
+		{
+			"name": "register cmd",
+			"scope": [
+				"constant.prg",
+			],
+			"settings": {
+				"foreground": "#f4f4f4"
 			}
 		},
 	]

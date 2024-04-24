@@ -8,7 +8,8 @@
   },
   "categories": [
     "Programming Languages",
-    "Themes"
+    "Themes",
+    "Snippets"
   ],
   "contributes": {
     "languages": [{
@@ -27,6 +28,12 @@
         "label": "hsr-theme",
         "uiTheme": "vs-dark",
         "path": "./themes/hsr-theme-color-theme.json"
+      }
+    ],
+    "snippets": [
+      {
+        "language": "prg",
+        "path": "./snippets/hsr-snippets.json"
       }
     ]
   }

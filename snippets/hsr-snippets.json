@@ -1,0 +1,322 @@
+{
+	"prg init template": {
+		"scope": "prg",
+		"prefix": "#init",
+		"body": [
+			"<attr>",
+			"VERSION:0",
+			"GROUP:[${1|0,*|}]",
+			"<end>",
+			"<pos>",
+			"<end>",
+			"<program>",
+			"",
+			"$2",
+			"<end>"
+		],
+		"description": "Log output to console"
+	},
+	"J": {
+		"prefix": "J",
+		"body": [
+			"J ${1|P,JR,LR|}[$2]"
+		],
+		"description": "description..."
+	},
+	"L": {
+		"prefix": "L",
+		"body": [
+			"L ${1|P,JR,LR|}[$2]"
+		],
+		"description": "description..."
+	},
+	"C": {
+		"prefix": "C",
+		"body": [
+			"C ${1|P,JR,LR|}[$2] ${3|P,JR,LR|}[$4]"
+		],
+		"description": "description..."
+	},
+	"A": {
+		"prefix": "A",
+		"body": [
+			"A ${1|P,JR,LR|}[$2]"
+		],
+		"description": "description..."
+	},
+	"DO": {
+		"prefix": "DO",
+		"body": [
+			"DO[${1:R[]}] = ${2|ON,OFF|}"
+		],
+		"description": "description..."
+	},
+	"VDI": {
+		"prefix": "VDI",
+		"body": [
+			"VDI[${1| ,R[]|}] = ${2|ON,OFF|}"
+		],
+		"description": "description..."
+	},
+	"AO": {
+		"prefix": "AO",
+		"body": [
+			"AO[${1| ,R[]|}] = ${2: }"
+		],
+		"description": "description..."
+	},
+	"PLUSE": {
+		"prefix": "PLUSE",
+		"body": [
+			"PLUSE DO[$1] TIME=$2"
+		],
+		"description": "description..."
+	},
+	"SET_TR": {
+		"prefix": "SET_TR",
+		"body": [
+			"SET_TR not completed"
+		],
+		"description": "description..."
+	},
+	"WAIT TIME": {
+		"prefix": "WAIT TIME",
+		"body": [
+			"WAIT TIME = $1"
+		],
+		"description": "description..."
+	},
+	"IFTHEN": {
+		"scope": "prg",
+		"prefix": "IFTHEN",
+		"body": [
+			"IF $1 THEN",
+			"$2",
+			"END IF"
+		],
+		"description": "Log output to console"
+	},
+	"IF GOTO": {
+		"scope": "prg",
+		"prefix": "IFGOTO",
+		"body": [
+			"IF $1,GOTO LBL[$2]"
+		],
+		"description": "Log output to console"
+	},
+	"IF CALL": {
+		"scope": "prg",
+		"prefix": "IFCALL",
+		"body": [
+			"IF $1,CALL \"$2\""
+		],
+		"description": "Log output to console"
+	},
+	"SELECT": {
+		"scope": "prg",
+		"prefix": "SELECT",
+		"body": [
+			"SELECT R[$1]"
+		],
+		"description": "Log output to console"
+	},
+	"CASE": {
+		"scope": "prg",
+		"prefix": "CASE",
+		"body": [
+			"CASE $1,GOTO LBL [$2]"
+		],
+		"description": "Log output to console"
+	},
+	"ELSECOTO": {
+		"scope": "prg",
+		"prefix": "ELSEGOTO",
+		"body": [
+			"ELSE,GOTO LBL[$1]"
+		],
+		"description": "Log output to console"
+	},
+	"CALL": {
+		"scope": "prg",
+		"prefix": "CALL",
+		"body": [
+			"CALL \"$1\""
+		],
+		"description": "Log output to console"
+	},
+	"GOTO": {
+		"scope": "prg",
+		"prefix": "GOTO",
+		"body": [
+			"GOTO LBL[$1]"
+		],
+		"description": "Log output to console"
+	},
+	"LBL": {
+		"scope": "prg",
+		"prefix": "LBL",
+		"body": [
+			"LBL[$1]"
+		],
+		"description": "Log output to console"
+	},
+	"FOR": {
+		"scope": "prg",
+		"prefix": "FOR",
+		"body": [
+			"FOR R[$1] = $2 TO $3"
+		],
+		"description": "Log output to console"
+	},
+	"FOR-BY": {
+		"scope": "prg",
+		"prefix": "FOR",
+		"body": [
+			"FOR R[$1] = $2 TO $3 BY $4"
+		],
+		"description": "Log output to console"
+	},
+	"END FOR": {
+		"scope": "prg",
+		"prefix": "END FOR",
+		"body": [
+			"END FOR"
+		],
+		"description": "Log output to console"
+	},
+	"WHILE": {
+		"scope": "prg",
+		"prefix": "WHILE",
+		"body": [
+			"WHILE"
+		],
+		"description": "Log output to console"
+	},
+	"END WHILE": {
+		"scope": "prg",
+		"prefix": "END WHILE",
+		"body": [
+			"END WHILE"
+		],
+		"description": "Log output to console"
+	},
+	"BREAK": {
+		"scope": "prg",
+		"prefix": "BREAK",
+		"body": [
+			"BREAK"
+		],
+		"description": "Log output to console"
+	},
+	"RUN": {
+		"prefix": "RUN",
+		"body": [
+			"RUN \"$1\""
+		],
+		"description": "description..."
+	},
+	"PAUSE": {
+		"prefix": "PAUSE",
+		"body": [
+			"PAUSE"
+		],
+		"description": "description..."
+	},
+	"WORLDFRAME": {
+		"prefix": "WORLDFRAME",
+		"body": [
+			"WORLDFRAME = $1"
+		],
+		"description": "description..."
+	},
+	"UTOOL_NUM": {
+		"prefix": "UTOOL_NUM",
+		"body": [
+			"UTOOL_NUM = $1"
+		],
+		"description": "description..."
+	},
+	"UTOOL_FRAME": {
+		"prefix": "UTOOL_FRAME",
+		"body": [
+			"UTOOL_FRAME = $1"
+		],
+		"description": "description..."
+	},
+	"SET_TOOL": {
+		"prefix": "SET_TOOL",
+		"body": [
+			"SET_TOOL $1 LR[$2]"
+		],
+		"description": "description..."
+	},
+	"EX_UTOOL": {
+		"prefix": "EX_UTOOL",
+		"body": [
+			"EX_UTOOL = $1"
+		],
+		"description": "description..."
+	},
+	"OPENSOCKET": {
+		"scope": "prg",
+		"prefix": "OPENSOCKET",
+		"body": [
+			"OPENSOCKET OPTIONS = $1 HANDLE = $2"
+		],
+		"description": "Log output to console"
+	},
+	"CLOSESOCKET": {
+		"scope": "prg",
+		"prefix": "CLOSESOCKET",
+		"body": [
+			"CLOSESOCKET HANDLE = $1"
+		],
+		"description": "Log output to console"
+	},
+	"ISHANDLEOPEN": {
+		"scope": "prg",
+		"prefix": "ISHANDLEOPEN",
+		"body": [
+			"ISHANDLEOPEN(${1:1})"
+		],
+		"description": "Log output to console"
+	},
+	"CONNECT": {
+		"scope": "prg",
+		"prefix": "CONNECT",
+		"body": [
+			"CONNECT(${1:1},${2:\"0.0.0.0\"},${3:30000})"
+		],
+		"description": "Log output to console"
+	},
+	"ACCEPT": {
+		"scope": "prg",
+		"prefix": "ACCEPT",
+		"body": [
+			"ACCEPT(${1:1},${2:\"0.0.0.0\"},${3:30000},R[${4:0}])"
+		],
+		"description": "Log output to console"
+	},
+	"SEND": {
+		"scope": "prg",
+		"prefix": "SEND",
+		"body": [
+			"SEND(${1:1},SR[$2])"
+		],
+		"description": "Log output to console"
+	},
+	"RECEIVE": {
+	"prefix": "RECEIVE",
+	"body": [
+		"${1:R[] = }RECEIVE($2,SR[$3])"
+	],
+	"description": "description..."
+	},
+	"SOCKETMONITOR": {
+	"prefix": "SOCKETMONITOR",
+	"body": [
+		"SOCKETMONITOR($1, $2)"
+	],
+	"description": "description..."
+	},
+}

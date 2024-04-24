@@ -3,6 +3,17 @@
 	"scopeName": "source.PRG",
 	"foldingStartMarker": "<attr>",
 	"foldingStopMarker": "<program>",
+		"comments": {
+			"name": "comment.line.character.prg",
+			"begin": "'",
+			"end": "$",
+			"patterns": [
+				{
+					"name": "constant.character.escape.prg",
+					"match": ""
+				}
+			]
+		},
 	"patterns": [
 		{
 			"name": "cmd.equal.prg",
@@ -22,7 +33,7 @@
 		},
 		{
 			"name": "cmd.condition.prg",
-			"match": "IF|THEN|ELSE|END IF|SELECT|CASE"
+			"match": "\\b(IF|THEN|ELSE|END IF|SELECT|CASE)\\b"
 		},
 		{
 			"name": "cmd.process.prg",
@@ -46,7 +57,11 @@
 		},
 		{
 			"name": "cmd.socket.prg",
-			"match": "\\b(OPENSOCKET|CLOSESOCKET|ISHANDLEOPEN|CONNECT|ACCEPT|SEND|RECEIVE|SOCKETMONITOR)\\b"
+			"match": "\\b(OPENSOCKET|OPTIONS|HANDLE|CLOSESOCKET|ISHANDLEOPEN|CONNECT|ACCEPT|SEND|RECEIVE|SOCKETMONITOR)\\b"
+		},
+		{
+			"name": "cmd.modbus.prg",
+			"match": "\\b(CLOSE_MODBUS_RTU|OPEN_MODBUS_RTU|OPEN_MODBUS_TCP|CLOSE_MODBUS_TCP|READ_MDB_COILSTATUS|READ_MDB_INPUTSTATUS|READ_MDB_INPUTREG|READ_MDB_HOLDREG|WRITE_MDB_COILSTATUS|WRITE_MDB_HOLDREG)\\b"
 		},
 		{
 			"name": "operator.prg",
@@ -62,7 +77,15 @@
 		},
 		{
 			"name": "cmd.register.prg",
-			"match": "\\bR\\[.*\\]|\\bJR\\[.*\\]"
+			"match": "\\b(R|JR|LR)"
+		},
+		{
+			"name": "character.prg",
+			"match": "'.*"
+		},
+		{
+			"name": "constant.prg",
+			"match": "'\\d+"
 		}
 	]
 }
