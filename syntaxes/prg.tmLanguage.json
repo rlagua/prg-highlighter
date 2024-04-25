@@ -25,7 +25,7 @@
 		},
 		{
 			"name": "cmd.io.prg",
-			"match": "\\b(DO|VDI|AO|PULSE|SET_TR|WAIT|TIME)\\b"
+			"match": "\\b(AO|PULSE|SET_TR|WAIT|TIME)\\b"
 		},
 		{
 			"name": "cmd.condition.prg",
@@ -37,19 +37,31 @@
 		},
 		{
 			"name": "cmd.circle.prg",
-			"match": "\\b(FOR|TO|WHILE|END FOR|END WHILE|BREAK)\\b"
+			"match": "\\b(FOR|TO|BY|WHILE|END FOR|END WHILE|BREAK)\\b"
 		},
 		{
 			"name": "cmd.programcontrol.prg",
 			"match": "\\b(RUN|PAUSE|ABORT|END|LOAD|START)\\b"
 		},
 		{
+			"name": "cmd.offset.prg",
+			"match": "\\b(OFFSET_CONDITION|TOOL_OFFSET_CONDITION)\\b"
+		},
+		{
+			"name": "cmd.dynamic.prg",
+			"match": "\\b(PAYLOAD|COL_DETECT|COL_GUARD_ADJUST|SYNCEXTAX|COORD_NUM)\\b"
+		},
+		{
 			"name": "cmd.coord.prg",
-			"match": "\\b(WORLDFRAME|UTOOL_NUM|UFRAME_NUM|SET_TOOL|EX_UTOOL)\\b"
+			"match": "\\b(WORLDFRAME|UTOOL_NUM|UFRAME_NUM|SET_TOOL|EX_UTOOL|SET_FRAME)\\b"
 		},
 		{
 			"name": "cmd.sport_para.prg",
-			"match": "\\b(J_VEL|J_ACC|J_DEC|L_VEL|L_ACC|L_DEC|L_VROT|C_VEL|C_ACC|C_DEC|C_VROT)\\b"
+			"match": "\\b(LIMZ|ARCH_A|ARCH_B|VEL|ACC|DEC|VROT|J_VEL|J_ACC|J_DEC|L_VEL|L_ACC|L_DEC|L_VROT|C_VEL|C_ACC|VORD|C_DEC|C_VROT)\\b"
+		},
+		{
+			"name": "cmd.traj_para.prg",
+			"match": "\\b(CNT|CNT_TYPE|SMOOTH|WRISTJNT|TURN|TALARM|QZ_ADAPTANGLE)\\b"
 		},
 		{
 			"name": "cmd.socket.prg",
@@ -61,23 +73,27 @@
 		},
 		{
 			"name": "cmd.other.prg",
-			"match": "\\b(PRINTF|THROW|LEVEL|SAVE FILE|DELAY|WEAVE|NUM|TYPE|PLANE|AMP|FRE|SLAVE|MODE|CYCLE|MASK)\\b"
+			"match": "\\b(PRINTF|THROW|LEVEL|SAVE FILE|DELAY|WEAVE|NUM|TYPE|PLANE|AMP|FRE|SLAVE|MODE|CYCLE|MASK|MAC|HANDPICK|DO_INDEX|DI_INDEX|DO_VALUE|DI_VALUE|TIMES|OUT)\\b"
 		},
 		{
 			"name": "cmd.level.prg",
 			"match": "\\b(INFO|NOTE|WARNING|ERROR|FATAL)\\b"
 		},
 		{
+			"name": "cmd.trace.prg",
+			"match": "\\b(TRACE|SKIP|GET TP|TPABS)\\b"
+		},
+		{
 			"name": "cmd.string.prg",
 			"match": "\\b(TOSTR|TOVAL|STRLEN|FINDSTR|SUBSTR)\\b"
 		},
 		{
-			"name": "operator.prg",
-			"match": "\\b(AND|OR|DIV|MOD)\\b"
+			"name": "math.prg",
+			"match": "\\b(DIV|MOD|SQRT|SIN|COS|TAN|ASIN|ACOS|ATAN|ABS|TRUNC|ROUND)\\b"
 		},
 		{
 			"name": "cmd.state.prg",
-			"match": "(\\bON|\\bOFF|\\w+.PRG|\".*\")"
+			"match": "(\\bON\\b|\\bOFF\\b|\\w+.PRG|\".*\")"
 		},
 		{
 			"name": "operator.prg",
@@ -89,7 +105,7 @@
 		},
 		{
 			"name": "cmd.register.prg",
-			"match": "\\b(R|JR|LR|P|SR)\\b"
+			"match": "\\b(DO|DI|VDI|R|JR|LR|P|SR)\\b"
 		},
 		{
 			"name": "character.prg",

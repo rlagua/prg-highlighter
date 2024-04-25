@@ -16,6 +16,20 @@
 		],
 		"description": "初始化模板"
 	},
+	"GENEJNT": {
+	"prefix": "GENEJNT",
+	"body": [
+		"P[$1]{GP:0,UF:-1,UT:-1,JNT:[0.0, -90.000, 180.000, 0.0, 90.000, 0.0, 0.0, 0.0, 0.0]};"
+	],
+	"description": "生成P点关节点位数据模板..."
+	},
+	"GENELOC": {
+	"prefix": "GENELOC",
+	"body": [
+		"P[$1]{GP:0,UF:-1,UT:-1,CFG:[0, 0, 0, 0, 0, 1],LOC:[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]};"
+	],
+	"description": "生成P点笛卡尔点位数据模板..."
+	},
 	"J": {
 		"prefix": "J",
 		"body": [
@@ -44,24 +58,31 @@
 		],
 		"description": "多段圆弧 A 指令可用于实现多段不同半径的圆弧，用于拼接多段不规则的曲线。程序行中连续的三条 A 指令指定的位置可组成一段圆弧。当使用四条连续的 A 指令时，可实现前三个点为半径 X 的圆弧，后三个点位半径 Y 的圆弧。两段圆弧之间可进行点位添加和删除，并且可以设置不同的运动附加属性，两段圆弧运动之间没有停顿"
 	},
+	"JUMP": {
+	"prefix": "JUMP",
+	"body": [
+		"JUMP ${1|P,JR,LR|}[$2] LIMZ=$3 ARCH_A=$4 ARCH_B=$5"
+	],
+	"description": "“门形”运动JUMP指令是只示教一个目标点时，机械臂可以从当前位置“门形”运动到目标点位。运动时机械臂会进行三段轨迹运动，第一段轨迹为垂直上升运动，第二段轨迹为指定平面的关节运动，第三段轨迹为垂直下降运动，三段运动之间平滑拼接"
+	},
 	"DO": {
 		"prefix": "DO",
 		"body": [
-			"DO[${1:R[]}] = ${2|ON,OFF|}"
+			"DO[$1] = ${2|ON,OFF|}"
 		],
 		"description": "DO[x]：数字量输出 IO，bool 类型，系统定义了 512 个，即 DO[0]~DO[511]"
 	},
 	"VDI": {
 		"prefix": "VDI",
 		"body": [
-			"VDI[${1| ,R[]|}] = ${2|ON,OFF|}"
+			"VDI[$1] = ${2|ON,OFF|}"
 		],
 		"description": "VDI 是虚拟 IO 输入，当系统的 IO 切换到虚拟状态后，VDI 的值就代表该 IO 的状态。 执行 VDI[X]=ON|OFF，将对应的虚拟 DI 信号置 ON 或 OFF"
 	},
 	"AO": {
 		"prefix": "AO",
 		"body": [
-			"AO[${1| ,R[]|}] = ${2: }"
+			"AO[$1] = ${2: }"
 		],
 		"description": "AO[x]：模拟量输出 IO，float 类型，系统定义了 16 个，即 AO[0]~AO[15]"
 	},
@@ -75,7 +96,7 @@
 	"SET_TR": {
 		"prefix": "SET_TR",
 		"body": [
-			"SET_TR not completed"
+			"SET_TR[$1],${2|DS,DE,DC|}=$3,DO[$4]=${5|ON,OFF|}"
 		],
 		"description": " 起点：正常情况下为上一运动指令的目标点。当运动终止时，重新启动运动后需以机器人当前位置为起始点重新进行计算。 DS：DISTANCE START 的缩写，指距离机器人运动起点的距离。 DE：DISTANCE END 的缩写，指距离运动目标点的距离"
 	},
@@ -150,7 +171,7 @@
 		"body": [
 			"GOTO LBL[$1]"
 		],
-		"description": "Log output to console"
+		"description": "跳转至LBL"
 	},
 	"LBL": {
 		"scope": "prg",
@@ -172,7 +193,7 @@
 	},
 	"FOR-BY": {
 		"scope": "prg",
-		"prefix": "FOR",
+		"prefix": "FOR-BY",
 		"body": [
 			"FOR R[$1] = $2 TO $3 BY $4",
 			"$5",
@@ -186,15 +207,15 @@
 		"body": [
 			"END FOR"
 		],
-		"description": "Log output to console"
+		"description": "闭合FOR循环结构"
 	},
 	"WHILE": {
 		"scope": "prg",
 		"prefix": "WHILE",
 		"body": [
-			"WHILE"
+			"WHILE $1"
 		],
-		"description": "END FOR"
+		"description": "WHILE"
 	},
 	"END WHILE": {
 		"scope": "prg",
@@ -222,9 +243,37 @@
 	"PAUSE": {
 		"prefix": "PAUSE",
 		"body": [
-			"PAUSE"
+			"PAUSE${1| SR[], \"\", |}"
 		],
 		"description": "PAUSE 指令用于暂停程序本身，或者暂停指定程序名的程序执行，可用在主程序或者 RUN 程序中"
+	},
+	"ABORT": {
+		"prefix": "ABORT",
+		"body": [
+			"ABORT${1| SR[], \"\", |}"
+		],
+		"description": "ABORT指令用于强制终止任务并卸载程序。该程序任务控制的所有运动都停止执行。ABORT指令可中止自身程序或者其他程序"
+	},
+	"END": {
+		"prefix": "END",
+		"body": [
+			"END${1| SR[], \"\", |}"
+		],
+		"description": "END指令用于中止自身程序或者其他程序执行，程序指针回到程序首行，任务处于READY状态。该指令可用于主程序或者RUN程序中"
+	},
+	"LOAD": {
+		"prefix": "LOAD",
+		"body": [
+			"LOAD${1| SR[], \"\"|}"
+		],
+		"description": "该指令只能加载前台程序，如果当前主程序已经被加载，则抛出警告信息"
+	},
+	"START": {
+		"prefix": "START",
+		"body": [
+			"START${1| SR[], \"\"|}"
+		],
+		"description": "START指令用于启动执行处于“准备中”|“暂停中”状态的前台或者后台程序，该指令可以在主程序或者RUN程序中执行，如果指定的程序不处于准备中|暂停中状态，即无法启动指定程序执行，系统抛出报警“无法启动xxx程序执行”"
 	},
 	"WORLDFRAME": {
 		"prefix": "WORLDFRAME",
@@ -240,10 +289,10 @@
 		],
 		"description": "该指令用于程序中调用须使用的 TCP 工具坐标系"
 	},
-	"UTOOL_FRAME": {
-		"prefix": "UTOOL_FRAME",
+	"UFRAME_NUM": {
+		"prefix": "UFRAME_NUM",
 		"body": [
-			"UTOOL_FRAME = $1"
+			"UFRAME_NUM = $1"
 		],
 		"description": "该指令用于程序中调用须使用的工件坐标系"
 	},
@@ -254,12 +303,124 @@
 		],
 		"description": "SET_TOOL 指令用于修改工具坐标系的值"
 	},
+	"SET_FRAME": {
+		"prefix": "SET_FRAME",
+		"body": [
+			"SET_FRAME $1 LR[$2]"
+		],
+		"description": "SET_TOOL 指令用于修改工具坐标系的值"
+	},
 	"EX_UTOOL": {
 		"prefix": "EX_UTOOL",
 		"body": [
 			"EX_UTOOL = $1"
 		],
-		"description": "description..."
+		"description": "外部TCP启用指令..."
+	},
+	"CNT": {
+		"prefix": "CNT",
+		"body": [
+			"CNT=$1"
+		],
+		"description": "CNT参数可用于两段运动轨迹的路径平滑拼接，减少运动停顿。其值为百分比（范围为0~100）。CNT参数值的含义：平滑轨迹所占时间与该段轨迹总运动时间T的一半的比值。T是该段轨迹运动的所需要的总时间。由于轨迹段的长短和运行时间t成正相关，因此可以使用某个时刻的轨迹点和总轨迹的比例关系来可视化描述系统的CNT属性..."
+	},
+	"CNT_TYPE": {
+		"prefix": "CNT_TYPE",
+		"body": [
+			"CNT_TYPE=$1"
+		],
+		"description": "(1)CNT_TYPE=0或者1为速度平滑模式，机械臂采用速度混合的方式，以当前的速度为初始条件“拐入”第二段轨迹。(2)CNT_TYPE=2为轨迹平滑模式，系统采用贝塞尔曲线将两段轨迹平滑拼接两种平滑方式的区别是：CNT_TYPE=2的平滑方式，在以下三种情形时，平滑过渡段的轨迹精度都不会发生改变：(1)修改程序运行的速度倍率（VORD）。(2)修改指令的VEL速度参数。(3)平滑轨迹段中暂停重启时"
+	},
+	"SMOOTH": {
+		"prefix": "SMOOTH",
+		"body": [
+			"SMOOTH=$1"
+		],
+		"description": "。SMOOTH 值范围：1~9，默认值 5。值越大越柔顺，加速度变化越慢"
+	},
+	"WRISTJNT": {
+		"prefix": "WRISTJNT",
+		"body": [
+			"WRISTJNT=$1"
+		],
+		"description": "WRISTJNT指令可实现过腕部奇异点。通过腕部奇异点时4、6轴不翻转，机械臂TCP末端保持直线轨迹，但姿态位置会发生改变"
+	},
+	"TURN": {
+		"prefix": "TURN",
+		"body": [
+			"TURN=$1"
+		],
+		"description": "TURN=0,即空间等效旋转轴的角度旋转变化最小的方向，如果这个方向下，4、6轴的逆解超限位，则自动选用反方向的解，这个是系统默认选项TURN=1,即空间等效旋转轴的角度旋转变化最大的方向，是TURN=0时相反的方向TURN=2,保证末端轴+-180°以内，不考虑等效旋转轴的旋转方向。该选项下，末端轴可能会存在正反转，但不会超出+-180度TURN=3,末端轴只能往正方向转动，如果末端轴正转的关节解超限位，则报警TURN=4,末端轴只能往反方向转动，如果末端轴反转的关节解超限位，则报警"
+	},
+	"TALARM": {
+		"prefix": "TALARM",
+		"body": [
+			"TALARM=$1"
+		],
+		"description": "ALARM的值默认是1，表示机械臂只能按TURN选项的要求运行，如果不符合要求，系统则报警"
+	},
+	"QZ_ADAPTANGLE": {
+		"prefix": "QZ_ADAPTANGLE",
+		"body": [
+			"QZ_ADAPTANGLE=$1"
+		],
+		"description": "..."
+	},
+	"VORD": {
+		"prefix": "VORD",
+		"body": [
+			"VORD=$1"
+		],
+		"description": "VORD 用于调节机械臂运行的速度倍率"
+	},
+	"OFFSET_CONDITION": {
+		"prefix": "OFFSET_CONDITION",
+		"body": [
+			"OFFSET_CONDITION=${1|JR,LR|}[$2]"
+		],
+		"description": "位置补偿指令是允许机械臂在到达目标点前对目标点的位置进行偏移补偿，分为全局条件设置和局部属性直接补偿两种方式。OFFSET补偿的位置值是基于基坐标|工件坐标系的"
+	},
+	"TOOL_OFFSET_CONDITION": {
+		"prefix": "TOOL_OFFSET_CONDITION",
+		"body": [
+			"TOOL_OFFSET_CONDITION=LR[$1]"
+		],
+		"description": "沿工具方向的位置补偿功能是指机械臂沿工具坐标系XYZABC轴的方向平移或旋转所设置的补偿量，工具补偿指令有两种表现方式。一种通过设置全局工具补偿量TOOL_OFFSET_CONDITION，然后使用TOOL_OFFSET实现，另一种是直接在TOOL_OFFSET后面指定工具补偿量"
+	},
+	"PAYLOAD": {
+		"prefix": "PAYLOAD",
+		"body": [
+			"PAYLOAD=$1"
+		],
+		"description": "PAYLOAD指令用于设定当前机械臂末端所挂负载的负载编号。负载信息包括质量、质心、惯量等信息。系统共有16组负载编号，用户在实际应用中可以挂不同的负载并进行估算后保存分别保存在每组编号中"
+	},
+	"COL_DETECT": {
+		"prefix": "COL_DETECT",
+		"body": [
+			"COL_DETECT=$1"
+		],
+		"description": "碰撞检测开关功能用于开启和关闭碰撞检测功能。如果该机械臂支持动力学模型，并完成参数辨识后，碰撞检测功能默认开启。如果用户在程序运行中，想控制某段轨迹不启用碰撞检测功能，用户可使用该指令进行关闭"
+	},
+	"COL_GUARD_ADJUST": {
+		"prefix": "COL_GUARD_ADJUST",
+		"body": [
+			"COL_GUARD_ADJUST=$1"
+		],
+		"description": "碰撞检测功能的灵敏度可调节，度数值越大，检测灵敏度越高"
+	},
+	"SYNCEXTAX": {
+	"prefix": "SYNCEXTAX",
+	"body": [
+		"SYNCEXTAX=$1"
+	],
+	"description": "机械臂和地轨同时动作支持两种形式：(1)时间同步，即地轨和机械臂同时启停。(2)地轨和外部轴协同运动，保证末端TCP的轨迹精度和运行速度"
+	},
+	"COORD_NUM": {
+	"prefix": "COORD_NUM",
+	"body": [
+		"COORD_NUM=$1"
+	],
+	"description": "COORD_NUM 指令用于在变位机协同运动中调用协同组号。使用变位机协同功能时，须先完成配置变位机轴、协同组标定，协同轨迹示教后才能程序中调用协同组，开启协同运动。"
 	},
 	"OPENSOCKET": {
 		"scope": "prg",
@@ -297,7 +458,15 @@
 		"scope": "prg",
 		"prefix": "ACCEPT",
 		"body": [
-			"${1:R[] = }ACCEPT(${2:Handle},\"${3:0.0.0.0}\",${4:Port},R[${5:fd}]${6:,TimeOut})"
+			"${1:R[] = }ACCEPT(${2:Handle},\"${3:0.0.0.0}\",${4:Port},R[${5:fd}])"
+		],
+		"description": "ACCEPT 指令用于机械臂做服务端的情形，服务端打开一个套接字（本例中是handle=1），然后阻塞等待客户端连接（accept），当客户端连接上后，服务端创建一个新的 socket 套接字，并返回保存在 fd 中，服务端用这个新套接字和已经连接的客户端进行数据交互，并再次阻塞监听等待下一个客户端连接。可以分别给对应的 fd 发送信息，实现在一对多的通讯"
+	},
+	"ACCEPT TIMEOUT": {
+		"scope": "prg",
+		"prefix": "ACCEPT",
+		"body": [
+			"${1:R[] = }ACCEPT(${2:Handle},\"${3:0.0.0.0}\",${4:Port},R[${5:fd}],${6:TimeOut})"
 		],
 		"description": "ACCEPT 指令用于机械臂做服务端的情形，服务端打开一个套接字（本例中是handle=1），然后阻塞等待客户端连接（accept），当客户端连接上后，服务端创建一个新的 socket 套接字，并返回保存在 fd 中，服务端用这个新套接字和已经连接的客户端进行数据交互，并再次阻塞监听等待下一个客户端连接。可以分别给对应的 fd 发送信息，实现在一对多的通讯"
 	},
@@ -361,7 +530,7 @@
 	"READ COIL STATUS": {
 		"prefix": "READ_COILSTATUS",
 		"body": [
-			"${1:R[] = }READ_MDB_COILSTATUS(${2:SlaveId},${3:StartIndex},${4:Num},${5|DO,R|}[])"
+			"${1:R[] = }READ_MDB_COILSTATUS(${2:SlaveId},${3:StartIndex},${4:Num},${5|DO,R|}[%6])"
 		],
 		"description": "机械臂作为主站读取从站的线圈数据"
 	},
@@ -375,7 +544,7 @@
 	"READ INPUT STATUS": {
 		"prefix": "READ_INPUTSTATUS",
 		"body": [
-			"${1:R[] = }READ_MDB_INPUTSTATUS(${2:SlaveId},${3:StartIndex},${4:Num},${5|DO,R|}[])"
+			"${1:R[] = }READ_MDB_INPUTSTATUS(${2:SlaveId},${3:StartIndex},${4:Num},${5|DO,R|}[$6])"
 		],
 		"description": "机械臂作为主站读取从站离散线圈数据输入"
 	},
@@ -506,86 +675,128 @@
 		"description": "GET TP..."
 	},
 	"TPABS": {
-	"prefix": "TPABS",
+		"prefix": "TPABS",
+		"body": [
+			"TPABS = ${1|0,1|}"
+		],
+		"description": "设置轮廓偏移点为绝对位置的方式"
+	},
+	"TRACE OFF": {
+	"prefix": "TRACE OFF",
 	"body": [
-		"TPABS = ${1|0,1|}"
+		"TRACE OFF"	
 	],
-	"description": "description..."
+	"description": "结束跟随"
 	},
 	"J_VEL": {
-	"prefix": "J_VEL",
-	"body": [
-		"J_VEL=$1"	
-	],
-	"description": "description..."
+		"prefix": "J_VEL",
+		"body": [
+			"J_VEL=$1"
+		],
+		"description": "description..."
 	},
 	"J_ACC": {
-	"prefix": "J_ACC",
-	"body": [
-		"J_ACC=$1"	
-	],
-	"description": "description..."
+		"prefix": "J_ACC",
+		"body": [
+			"J_ACC=$1"
+		],
+		"description": "description..."
 	},
 	"J_DEC": {
-	"prefix": "J_DEC",
-	"body": [
-		"J_DEC=$1"	
-	],
-	"description": "description..."
+		"prefix": "J_DEC",
+		"body": [
+			"J_DEC=$1"
+		],
+		"description": "description..."
 	},
 	"L_VEL": {
-	"prefix": "L_VEL",
-	"body": [
-		"L_VEL=$1"	
-	],
-	"description": "description..."
+		"prefix": "L_VEL",
+		"body": [
+			"L_VEL=$1"
+		],
+		"description": "description..."
 	},
 	"L_ACC": {
-	"prefix": "L_ACC",
-	"body": [
-		"L_ACC=$1"	
-	],
-	"description": "description..."
+		"prefix": "L_ACC",
+		"body": [
+			"L_ACC=$1"
+		],
+		"description": "description..."
 	},
 	"L_DEC": {
-	"prefix": "L_DEC",
-	"body": [
-		"L_DEC=$1"	
-	],
-	"description": "description..."
+		"prefix": "L_DEC",
+		"body": [
+			"L_DEC=$1"
+		],
+		"description": "description..."
 	},
 	"L_VROT": {
-	"prefix": "L_VROT",
-	"body": [
-		"L_VROT=$1"	
-	],
-	"description": "description..."
+		"prefix": "L_VROT",
+		"body": [
+			"L_VROT=$1"
+		],
+		"description": "description..."
 	},
 	"C_VEL": {
-	"prefix": "C_VEL",
-	"body": [
-		"C_VEL=$1"	
-	],
-	"description": "description..."
+		"prefix": "C_VEL",
+		"body": [
+			"C_VEL=$1"
+		],
+		"description": "description..."
 	},
 	"C_ACC": {
-	"prefix": "C_ACC",
-	"body": [
-		"C_ACC=$1"	
-	],
-	"description": "description..."
+		"prefix": "C_ACC",
+		"body": [
+			"C_ACC=$1"
+		],
+		"description": "description..."
 	},
 	"C_DEC": {
-	"prefix": "C_DEC",
-	"body": [
-		"C_DEC=$1"	
-	],
-	"description": "description..."
+		"prefix": "C_DEC",
+		"body": [
+			"C_DEC=$1"
+		],
+		"description": "description..."
 	},
 	"C_VROT": {
-	"prefix": "C_VROT",
+		"prefix": "C_VROT",
+		"body": [
+			"C_VROT=$1"
+		],
+		"description": "description..."
+	},
+	"VEL": {
+		"prefix": "VEL",
+		"body": [
+			"VEL=$1"
+		],
+		"description": "description..."
+	},
+	"ACC": {
+		"prefix": "ACC",
+		"body": [
+			"ACC=$1"
+		],
+		"description": "description..."
+	},
+	"DEC": {
+		"prefix": "DEC",
+		"body": [
+			"DEC=$1"
+		],
+		"description": "description..."
+	},
+	"VROT": {
+		"prefix": "VROT",
+		"body": [
+			"VROT=$1"
+		],
+		"description": "description..."
+	},
+	"HANDPICK": {
+	"prefix": "HANDPICK",
 	"body": [
-		"C_VROT=$1"	
+		"MAC HANDPICK DO_INDEX=$1 DO_VALUE=${2|ON,OFF|} DI_INDEX=$3 DI_VALUE=${4|ON,OFF|} TIMES=$5,OUT"
 	],
 	"description": "description..."
 	}

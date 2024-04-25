@@ -48,6 +48,10 @@
 				"cmd.io.prg",
 				"cmd.programcontrol.prg",
 				"cmd.coord.prg",
+				"cmd.offset.prg",
+				"cmd.dynamic.prg",
+				"cmd.trace.prg",
+				"math.prg"
 			],
 			"settings": {
 				"foreground": "#1b88db"
@@ -65,9 +69,10 @@
 			"name": "sports para cmd",
 			"scope": [
 				"cmd.sport_para.prg",
+				"cmd.traj_para.prg",
 			],
 			"settings": {
-				"foreground": "#ca23b4"
+				"foreground": "#9db6d9"
 			}
 		},
 		{
