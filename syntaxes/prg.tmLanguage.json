@@ -25,7 +25,7 @@
 		},
 		{
 			"name": "cmd.io.prg",
-			"match": "\\b(AO|PULSE|SET_TR|WAIT|TIME)\\b"
+			"match": "\\b(AO|PULSE|SET_TR|WAIT|TIME|VORD|SEC)\\b"
 		},
 		{
 			"name": "cmd.condition.prg",
@@ -57,7 +57,7 @@
 		},
 		{
 			"name": "cmd.sport_para.prg",
-			"match": "\\b(LIMZ|ARCH_A|ARCH_B|VEL|ACC|DEC|VROT|J_VEL|J_ACC|J_DEC|L_VEL|L_ACC|L_DEC|L_VROT|C_VEL|C_ACC|VORD|C_DEC|C_VROT)\\b"
+			"match": "\\b(LIMZ|ARCH_A|ARCH_B|VEL|ACC|DEC|VROT|J_VEL|J_ACC|J_DEC|L_VEL|L_ACC|L_DEC|L_VROT|C_VEL|C_ACC|C_DEC|C_VROT)\\b"
 		},
 		{
 			"name": "cmd.traj_para.prg",

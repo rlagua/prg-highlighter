@@ -17,18 +17,18 @@
 		"description": "初始化模板"
 	},
 	"GENEJNT": {
-	"prefix": "GENEJNT",
-	"body": [
-		"P[$1]{GP:0,UF:-1,UT:-1,JNT:[0.0, -90.000, 180.000, 0.0, 90.000, 0.0, 0.0, 0.0, 0.0]};"
-	],
-	"description": "生成P点关节点位数据模板..."
+		"prefix": "GENEJNT",
+		"body": [
+			"P[$1]{GP:0,UF:-1,UT:-1,JNT:[0.0, -90.000, 180.000, 0.0, 90.000, 0.0, 0.0, 0.0, 0.0]};"
+		],
+		"description": "生成P点关节点位数据模板..."
 	},
 	"GENELOC": {
-	"prefix": "GENELOC",
-	"body": [
-		"P[$1]{GP:0,UF:-1,UT:-1,CFG:[0, 0, 0, 0, 0, 1],LOC:[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]};"
-	],
-	"description": "生成P点笛卡尔点位数据模板..."
+		"prefix": "GENELOC",
+		"body": [
+			"P[$1]{GP:0,UF:-1,UT:-1,CFG:[0, 0, 0, 0, 0, 1],LOC:[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]};"
+		],
+		"description": "生成P点笛卡尔点位数据模板..."
 	},
 	"J": {
 		"prefix": "J",
@@ -59,11 +59,11 @@
 		"description": "多段圆弧 A 指令可用于实现多段不同半径的圆弧，用于拼接多段不规则的曲线。程序行中连续的三条 A 指令指定的位置可组成一段圆弧。当使用四条连续的 A 指令时，可实现前三个点为半径 X 的圆弧，后三个点位半径 Y 的圆弧。两段圆弧之间可进行点位添加和删除，并且可以设置不同的运动附加属性，两段圆弧运动之间没有停顿"
 	},
 	"JUMP": {
-	"prefix": "JUMP",
-	"body": [
-		"JUMP ${1|P,JR,LR|}[$2] LIMZ=$3 ARCH_A=$4 ARCH_B=$5"
-	],
-	"description": "“门形”运动JUMP指令是只示教一个目标点时，机械臂可以从当前位置“门形”运动到目标点位。运动时机械臂会进行三段轨迹运动，第一段轨迹为垂直上升运动，第二段轨迹为指定平面的关节运动，第三段轨迹为垂直下降运动，三段运动之间平滑拼接"
+		"prefix": "JUMP",
+		"body": [
+			"JUMP ${1|P,JR,LR|}[$2] LIMZ=$3 ARCH_A=$4 ARCH_B=$5"
+		],
+		"description": "“门形”运动JUMP指令是只示教一个目标点时，机械臂可以从当前位置“门形”运动到目标点位。运动时机械臂会进行三段轨迹运动，第一段轨迹为垂直上升运动，第二段轨迹为指定平面的关节运动，第三段轨迹为垂直下降运动，三段运动之间平滑拼接"
 	},
 	"DO": {
 		"prefix": "DO",
@@ -409,18 +409,18 @@
 		"description": "碰撞检测功能的灵敏度可调节，度数值越大，检测灵敏度越高"
 	},
 	"SYNCEXTAX": {
-	"prefix": "SYNCEXTAX",
-	"body": [
-		"SYNCEXTAX=$1"
-	],
-	"description": "机械臂和地轨同时动作支持两种形式：(1)时间同步，即地轨和机械臂同时启停。(2)地轨和外部轴协同运动，保证末端TCP的轨迹精度和运行速度"
+		"prefix": "SYNCEXTAX",
+		"body": [
+			"SYNCEXTAX=$1"
+		],
+		"description": "机械臂和地轨同时动作支持两种形式：(1)时间同步，即地轨和机械臂同时启停。(2)地轨和外部轴协同运动，保证末端TCP的轨迹精度和运行速度"
 	},
 	"COORD_NUM": {
-	"prefix": "COORD_NUM",
-	"body": [
-		"COORD_NUM=$1"
-	],
-	"description": "COORD_NUM 指令用于在变位机协同运动中调用协同组号。使用变位机协同功能时，须先完成配置变位机轴、协同组标定，协同轨迹示教后才能程序中调用协同组，开启协同运动。"
+		"prefix": "COORD_NUM",
+		"body": [
+			"COORD_NUM=$1"
+		],
+		"description": "COORD_NUM 指令用于在变位机协同运动中调用协同组号。使用变位机协同功能时，须先完成配置变位机轴、协同组标定，协同轨迹示教后才能程序中调用协同组，开启协同运动。"
 	},
 	"OPENSOCKET": {
 		"scope": "prg",
@@ -682,11 +682,11 @@
 		"description": "设置轮廓偏移点为绝对位置的方式"
 	},
 	"TRACE OFF": {
-	"prefix": "TRACE OFF",
-	"body": [
-		"TRACE OFF"	
-	],
-	"description": "结束跟随"
+		"prefix": "TRACE OFF",
+		"body": [
+			"TRACE OFF"
+		],
+		"description": "结束跟随"
 	},
 	"J_VEL": {
 		"prefix": "J_VEL",
@@ -794,10 +794,24 @@
 		"description": "description..."
 	},
 	"HANDPICK": {
-	"prefix": "HANDPICK",
+		"prefix": "HANDPICK",
+		"body": [
+			"MAC HANDPICK DO_INDEX=$1 DO_VALUE=${2|ON,OFF|} DI_INDEX=$3 DI_VALUE=${4|ON,OFF|} TIMES=$5,OUT"
+		],
+		"description": "description..."
+	},
+	"TIME": {
+		"prefix": "TIME",
+		"body": [
+			"TIME"
+		],
+		"description": "记录当前时间"
+	},
+	"SEC": {
+	"prefix": "SEC",
 	"body": [
-		"MAC HANDPICK DO_INDEX=$1 DO_VALUE=${2|ON,OFF|} DI_INDEX=$3 DI_VALUE=${4|ON,OFF|} TIMES=$5,OUT"
+		"SEC = $1"	
 	],
-	"description": "description..."
-	}
+	"description": "指定关节运动时间"
+	},
 }
